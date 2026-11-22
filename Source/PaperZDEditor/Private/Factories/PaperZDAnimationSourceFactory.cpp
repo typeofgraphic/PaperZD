@@ -66,7 +66,9 @@ bool UPaperZDAnimationSourceFactory::ConfigureProperties()
 
 UObject* UPaperZDAnimationSourceFactory::FactoryCreateNew(UClass* Class, UObject* InParent, FName Name, EObjectFlags Flags, UObject* Context, FFeedbackContext* Warn)
 {
-	UPaperZDAnimationSource* AnimationSourceNew = NewObject<UPaperZDAnimationSource>(InParent, SelectedClass, Name, Flags);
+	//Scripted creation (Python/automation) never shows the picker, so fall back to the Flipbook source instead of crashing on a null class.
+	UClass* ClassToCreate = SelectedClass ? SelectedClass.Get() : UPaperZDAnimationSource_Flipbook::StaticClass();
+	UPaperZDAnimationSource* AnimationSourceNew = NewObject<UPaperZDAnimationSource>(InParent, ClassToCreate, Name, Flags);
 	return AnimationSourceNew;
 }
 

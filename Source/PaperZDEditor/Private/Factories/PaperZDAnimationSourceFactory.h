@@ -15,7 +15,8 @@ class UPaperZDAnimationSourceFactory : public UFactory
 
 public:
 	/* Class to create when the factory needs to do so. */
-	UPROPERTY(Transient)
+	/* Exposed to Python/Blueprints so scripts can pick the class without the picker dialog. Defaults to the Flipbook source when null. */
+	UPROPERTY(Transient, EditAnywhere, BlueprintReadWrite, Category = "Factory")
 	TSubclassOf<class UPaperZDAnimationSource> SelectedClass;
 
 public:
