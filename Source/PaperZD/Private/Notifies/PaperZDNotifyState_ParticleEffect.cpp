@@ -3,6 +3,7 @@
 #include "Notifies/PaperZDNotifyState_ParticleEffect.h"
 #include "Particles/ParticleSystem.h"
 #include "Kismet/GameplayStatics.h"
+#include "CascadeFunctionLibrary.h"
 #include "Particles/ParticleSystem.h"
 #include "ParticleHelper.h"
 #include "Particles/ParticleSystemComponent.h"
@@ -56,7 +57,7 @@ void UPaperZDNotifyState_ParticleEffect::OnNotifyBegin_Implementation(UPaperZDAn
 {
 	if (PSTemplate && SequenceRenderComponent.IsValid())
 	{
-		UParticleSystemComponent* Component = UGameplayStatics::SpawnEmitterAttached(PSTemplate, SequenceRenderComponent.Get(), SocketName, LocationOffset, RotationOffset, Scale, EAttachLocation::KeepRelativeOffset, !bDestroyAtEnd);
+		UParticleSystemComponent* Component = UCascadeFunctionLibrary::SpawnEmitterAttached(PSTemplate, SequenceRenderComponent.Get(), SocketName, LocationOffset, RotationOffset, Scale, EAttachLocation::KeepRelativeOffset, !bDestroyAtEnd);
 		if (Component)
 		{
 			Component->ComponentTags.AddUnique(GetSpawnedComponentTag());

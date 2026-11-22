@@ -51,7 +51,8 @@ public class PaperZD : ModuleRules
 		PrivateDependencyModuleNames.AddRange(
 			new string[]
 			{
-				"CoreUObject",
+				
+				"CascadeRuntime","CoreUObject",
 				"Engine",
 				"Slate",
 				"SlateCore",
