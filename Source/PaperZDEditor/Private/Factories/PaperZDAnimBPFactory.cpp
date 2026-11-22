@@ -74,7 +74,11 @@ bool UPaperZDAnimBPFactory::ConfigureProperties()
 
 UObject* UPaperZDAnimBPFactory::FactoryCreateNew(UClass* Class, UObject* InParent, FName Name, EObjectFlags Flags, UObject* Context, FFeedbackContext* Warn)
 {
-	check(SupportedAnimationSource);
+	if (SupportedAnimationSource == nullptr)
+	{
+		Warn->Logf(ELogVerbosity::Error, TEXT("Could not create Animation Blueprint, no Supported Animation Source was set."));
+		return nullptr;
+	}
 	UPaperZDAnimBP* NewBP = CastChecked<UPaperZDAnimBP>(FKismetEditorUtilities::CreateBlueprint(ParentClass, InParent, Name, BlueprintType, UPaperZDAnimBP::StaticClass(), UPaperZDAnimBPGeneratedClass::StaticClass()));
 	NewBP->SupportedAnimationSource = SupportedAnimationSource;
 

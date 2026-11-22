@@ -78,6 +78,10 @@ UObject* UPaperZDAnimSequenceFactory::FactoryCreateNew(UClass* Class, UObject* I
 		AnimSequence->SetAnimSource(TargetAnimSource);
 		return AnimSequence;
 	}
+	else if (TargetAnimSource == nullptr)
+	{
+		Warn->Logf(ELogVerbosity::Error, TEXT("Could not create Animation, no Target Anim Source was set."));
+	}
 	else if (TargetAnimSource->GetSupportedAnimSequenceClass() == nullptr)
 	{
 		Warn->Logf(ELogVerbosity::Error, TEXT("Could not create Animation, Animation Source has no valid default supported animation class."));

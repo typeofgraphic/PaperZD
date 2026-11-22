@@ -24,7 +24,7 @@ public:
 	 * Animation source for which to create this sequence, the sequence class will be inferred by the sequence type supported by the animation source. 
 	 * If no object is set, the factory will display an asset picker to let the user select the target animation blueprint.
 	 */
-	UPROPERTY()
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Factory")
 	TObjectPtr<class UPaperZDAnimationSource> TargetAnimSource;
 
 public:

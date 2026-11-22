@@ -27,7 +27,8 @@ class UPaperZDAnimBPFactory : public UFactory
 	TSharedPtr<SWindow> PickerWindow;
 
 public:
-	/* Animation source in which to base the new blueprint. */
+	/* Animation source in which to base the new blueprint. Exposed so scripts can set it without the picker. */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Factory")
 	TObjectPtr<class UPaperZDAnimationSource> SupportedAnimationSource;
 
 public:
