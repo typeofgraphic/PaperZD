@@ -44,6 +44,10 @@
 		{
 			"Name": "Niagara",
 			"Enabled": true
+		},
+		{
+			"Name": "Cascade",
+			"Enabled": true
 		}
 	]
 }

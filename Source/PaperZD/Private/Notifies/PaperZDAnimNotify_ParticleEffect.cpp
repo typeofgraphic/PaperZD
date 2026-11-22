@@ -3,6 +3,7 @@
 #include "PaperZDAnimNotify_ParticleEffect.h"
 #include "Particles/ParticleSystem.h"
 #include "Kismet/GameplayStatics.h"
+#include "CascadeFunctionLibrary.h"
 #include "Particles/ParticleSystem.h"
 #include "ParticleHelper.h"
 
@@ -64,7 +65,7 @@ void UPaperZDAnimNotify_ParticleEffect::OnReceiveNotify_Implementation(UPaperZDA
 
 		if (bAttached)
 		{
-			UGameplayStatics::SpawnEmitterAttached(PSTemplate, SequenceRenderComponent.Get(), SocketName, LocationOffset, RotationOffset, Scale);
+			UCascadeFunctionLibrary::SpawnEmitterAttached(PSTemplate, SequenceRenderComponent.Get(), SocketName, LocationOffset, RotationOffset, Scale);
 		}
 		else
 		{
@@ -73,7 +74,7 @@ void UPaperZDAnimNotify_ParticleEffect::OnReceiveNotify_Implementation(UPaperZDA
 			SpawnTransform.SetLocation(Transform.TransformPosition(LocationOffset));
 			SpawnTransform.SetRotation(Transform.GetRotation() * RotationOffsetQuat);
 			SpawnTransform.SetScale3D(Scale);
-			UParticleSystemComponent* System = UGameplayStatics::SpawnEmitterAtLocation(SequenceRenderComponent->GetWorld(), PSTemplate, SpawnTransform);
+			UParticleSystemComponent* System = UCascadeFunctionLibrary::SpawnEmitterAtLocation(SequenceRenderComponent->GetWorld(), PSTemplate, SpawnTransform);
 		}
 	}
 	else if (!PSTemplate)
